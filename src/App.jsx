@@ -5,8 +5,19 @@ import { FaPlusCircle } from "react-icons/fa";
 import { collection,getDocs } from "firebase/firestore";
 import { db } from "./config/firebase";
 import ContactCard from "./components/ContactCard";
+import Modal from "./components/Modal";
+import AddAndUpdate from "./components/AddAndUpdate";
+
+
 export default function App() {
   const [contacts,setContacts]=useState([]);
+  const[isOpen,setOpen]=useState(false);
+  const onOpen=()=>{
+    setOpen(true);
+  };
+  const onClose=()=>{
+    setOpen(false);
+  };
 
   useEffect(()=>{
     const getContacts= async () =>{
@@ -30,6 +41,7 @@ export default function App() {
   },[]);
 
   return (
+    <>
     <div className="px-4 max-w-[370px] mx-auto">
       <NavigationBar></NavigationBar>
       <div className="flex">
@@ -38,7 +50,7 @@ export default function App() {
         <input type="text" className=" h-10 flex-grow 
         bg-transparent border pl-9 text-white border-white rounded-md" />
       </div>
-        <FaPlusCircle className="text-white text-4xl ml-2 cursor-pointer" />
+        <FaPlusCircle onClick={onOpen} className="text-white text-4xl ml-2 cursor-pointer" />
       </div>
       <div className="mt-4 gap-3">{
         contacts.map((contact) =>(
@@ -46,5 +58,7 @@ export default function App() {
       ))}
       </div>
     </div>
+    <AddAndUpdate isOpen={isOpen} onClose={onClose}/>
+    </>
   )
 }

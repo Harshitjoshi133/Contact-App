@@ -4,11 +4,16 @@ import { RiEditCircleLine } from "react-icons/ri";
 import { IoTrash } from "react-icons/io5";
 import { deleteDoc,doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import useDisclose from '../hooks/useDisclose';
+import AddAndUpdate from './AddAndUpdate';
+import { toast } from 'react-toastify';
 const ContactCard = ({contact}) => {
+  const {isOpen, onOpen ,onClose}=useDisclose();
   const deleteContact = async (id)=>{
     try {
       
       await deleteDoc(doc(db,"contacts",id));
+      toast.success("Contact has been deleted successFully")
     } catch (error) {
       console.log(error);
     }
@@ -25,10 +30,10 @@ const ContactCard = ({contact}) => {
       </div>
       </div>
      <div className="flex text-3xl">
-      <RiEditCircleLine/>
-      <IoTrash onClick={()=>deleteContact(contact.id)} className="text-orange"/>
+      <RiEditCircleLine onClick={onOpen} className='cursor-pointer'/>
+      <IoTrash onClick={()=>deleteContact(contact.id)} className="text-orange cursor-pointer" />
      </div>
-      
+      <AddAndUpdate contact={contact} isUpdate isOpen={isOpen} onClose={onClose}/>
     </div>
   )
 }

@@ -10,6 +10,8 @@ node_modules
 dist
 dist-ssr
 *.local
+
+#ignore firebase for security reasons
 src/config/firebase.js
 
 

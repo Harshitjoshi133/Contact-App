@@ -2,14 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
-require('dotenv').config();
-const apiKey = process.env.API_KEY;
 const firebaseConfig = {
-  apiKey: apiKey,
+  apiKey: import.meta.env.API_KEY,
   authDomain: "vite-contact-79d65.firebaseapp.com",
   projectId: "vite-contact-79d65",
   storageBucket: "vite-contact-79d65.appspot.com",

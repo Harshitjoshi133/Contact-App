@@ -11,6 +11,8 @@ dist
 dist-ssr
 *.local
 
+#ignore firebase for security reasons
+src/config/.env
 
 
 # Editor directories and files

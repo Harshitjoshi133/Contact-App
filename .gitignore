@@ -11,8 +11,6 @@ dist
 dist-ssr
 *.local
 
-#ignore firebase for security reasons
-src/config/firebase.js
 
 
 # Editor directories and files
